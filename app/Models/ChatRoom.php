@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoom extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function chats()
+    {
+        return $this->hasMany(Chats::class);
+    }
 }
