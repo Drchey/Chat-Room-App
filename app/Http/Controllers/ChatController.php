@@ -18,31 +18,21 @@ class ChatController extends Controller
         return ChatRoom::latest()->get();
     }
 
-    public function chats(Request $request, Chats $room_id)
+    public function chats(Request $request, $room_id)
     {
         return Chats::where('chat_room_id', $room_id)->with('user')->get();
     }
 
-    public function message(Request $request, $room_id)
+    public function messages(Request $request, $room_id)
     {
-        $validator = Validator::make($request->all(),[
-            'chat_room_id'=> 'integer',
-            'mssg' => 'required|string',
-            'user_id' => 'integer',
-        ]);
+            // $chat = new Chats;
+            // $chat->user_id = Auth::id();
+            // $chat->chat_room_id = $room_id;
 
-        if($validator->fails()){
-            return [
-                'message' => 'Validation Error'
-            ];
-        }else{
-            $chat = new Chats;
-            $chat->user_id = Auth::id();
-            $chat->chat_room_id = $room_id;
+            // $chat->message = $request->message();
+            // $chat->save();
+            return ['message' => 'Hero'];
 
-            $chat->mssg = $request->mssg();
-            $chat->save();
-        }
 
     }
 
